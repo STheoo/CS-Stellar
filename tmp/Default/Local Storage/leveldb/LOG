@@ -1,3 +1,15 @@
-2023/10/31-13:09:36.594 1178 Reusing MANIFEST C:\Users\savva\Desktop\Stellar\tmp\Default\Local Storage\leveldb/MANIFEST-000001
-2023/10/31-13:09:36.595 1178 Recovering log #10
-2023/10/31-13:09:36.599 1178 Reusing old log C:\Users\savva\Desktop\Stellar\tmp\Default\Local Storage\leveldb/000010.log 
+2023/11/01-02:06:08.925 3ab4 Reusing MANIFEST C:\Users\savva\Desktop\Stellar\tmp\Default\Local Storage\leveldb/MANIFEST-000001
+2023/11/01-02:06:08.926 3ab4 Recovering log #23
+2023/11/01-02:06:08.931 3ab4 Reusing old log C:\Users\savva\Desktop\Stellar\tmp\Default\Local Storage\leveldb/000023.log 
+2023/11/01-02:06:59.503 46c Level-0 table #26: started
+2023/11/01-02:06:59.521 46c Level-0 table #26: 14372 bytes OK
+2023/11/01-02:06:59.524 46c Delete type=0 #23
+2023/11/01-02:06:59.532 46c Compacting 4@0 + 1@1 files
+2023/11/01-02:06:59.540 46c Generated table #27@0: 44 keys, 15603 bytes
+2023/11/01-02:06:59.541 46c Compacted 4@0 + 1@1 files => 15603 bytes
+2023/11/01-02:06:59.541 46c compacted to: files[ 0 1 0 0 0 0 0 ]
+2023/11/01-02:06:59.542 46c Delete type=2 #14
+2023/11/01-02:06:59.543 46c Delete type=2 #16
+2023/11/01-02:06:59.543 46c Delete type=2 #19
+2023/11/01-02:06:59.543 46c Delete type=2 #22
+2023/11/01-02:06:59.543 46c Delete type=2 #26
