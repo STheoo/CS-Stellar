@@ -62,7 +62,10 @@ const urls = [
   'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Type_Shotgun.Nova&page=1',
   'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Type_Shotgun.Sawed-Off&page=1',
   'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Type_Shotgun.XM1014&page=1',
-  'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&type=CSGO_Type_WeaponCase%2CCSGO_Tool_Sticker%2CCSGO_Type_Spray%2CType_CustomPlayer%2CCSGO_Type_MusicKit&page=1',
+  'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&type=CSGO_Type_MusicKit&page=1',
+  'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Type_WeaponCase&page=1',
+  'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Tool_Sticker&page=1',
+  'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=Type_CustomPlayer&page=1',
 ];
 
 (async () => {
@@ -100,18 +103,19 @@ const urls = [
 
       for (const producthandle of productsHandles) {
         let isStatTrack = null;
-        let weapon = 'Null';
+        let type = 'Null';
         let skin = 'Null';
         let wear = 'Null';
         let price = 'Null';
 
-        const match = url.match(/\.[^.]+\.([^&]+)/);
+        let match = url.match(/MusicKit|WeaponCase|Sticker|Player/);
 
         if (match) {
-          weapon = match[1];
-          weapon = weapon.replace(/\+/g, ' ');
+          type = match[0];
         } else {
-          console.log('No match found');
+          match = url.match(/\.[^.]+\.([^&]+)/);
+          type = match[1]
+          type = type.replace(/\+/g, ' ');
         }
 
         try {
@@ -146,7 +150,16 @@ const urls = [
                   el.querySelector('div.ItemCardNewBody_pricePrimary__pqq_k')
                       .textContent,
               producthandle);
+          price = price.replace(/\,/g, '');
         } catch (error) {
+        }
+
+        if (type !== 'Null') {
+          fs.appendFile(
+              'test.csv', `${type},${skin},${wear},${isStatTrack},${price}\n`,
+              function(err) {
+                if (err) throw err;
+              });
         }
         // TODO: Match skin to buff csv and compare price and return snipeable
         // or not.
@@ -172,8 +185,8 @@ const urls = [
     await cluster.queue(url);
   }
 
-  //   await cluster.queue(
-  //       'https://gamerpay.gg/?subtype=CSGO_Type_Knife.Bayonet&sortBy=deals&ascending=true&page=1&priceMin=500');
+  // await cluster.queue(
+  //     'https://gamerpay.gg/?subtype=CSGO_Type_Knife.Bayonet&sortBy=deals&ascending=true&page=1&priceMin=500');
 
   await cluster.idle();
   await cluster.close();
