@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const puppeteer = require('puppeteer');
 
 (async () => {
@@ -9,14 +9,19 @@ const puppeteer = require('puppeteer');
   // Create a new page
   const page = await browser.newPage();
 
+  // Load Cookies
+  const cookiesString = await fs.readFile('cookies.json');
+  const cookies = JSON.parse(cookiesString);
+  await page.setCookie(...cookies);
+
   await page.goto(
       'https://buff.163.com/market/csgo#tab=selling&page_num=1&min_price=10');
 
   const login = await page.$('#navbar-user-name');
   if (login !== null) {
-    console.log('logged in')
+    console.log('Logged in.')
   } else {
-    console.log('not logged in')
+    console.log('Not Logged in.')
 
     const pageTarget = page.target();
 
@@ -27,7 +32,21 @@ const puppeteer = require('puppeteer');
 
     const newPage = await newTarget.page();
 
-    await newPage.click('#imageLogin');
+    // await newPage.click('#imageLogin');
+    try {
+      await newPage.click('#imageLogin');
+    } catch (error) {
+      await newPage.reload();
+      await newPage.click('#imageLogin');
+    }
+
+    // Save Cookies
+    const cookies = await page.cookies();
+    await fs.writeFile(
+        'cookies.json', JSON.stringify(cookies, null, 2), (err) => {
+          if (err) throw err;
+          console.log('Cookies saved to cookies.json');
+        });
   }
 
 
@@ -42,8 +61,19 @@ const puppeteer = require('puppeteer');
     const productsHandles = await page.$$('.card_csgo > li');
 
     for (const producthandle of productsHandles) {
+      let id = 'Null';
       let title = 'Null';
       let price = 'Null';
+
+      try {
+        const href = await page.evaluate(
+            (el) => el.querySelector('h3 > a').getAttribute('href'),
+            producthandle);
+        const match = href.match(/\d+/);
+        id = match[0];
+      } catch (error) {
+      }
+
 
 
       try {
@@ -60,7 +90,7 @@ const puppeteer = require('puppeteer');
 
       if (title !== 'Null') {
         fs.appendFile(
-            'results.csv', `${title.replace(/,/g, '.')},${price}\n`,
+            'results.csv', `${id},${title.replace(/,/g, '.')},${price}\n`,
             function(err) {
               if (err) throw err;
             });
@@ -84,5 +114,3 @@ const puppeteer = require('puppeteer');
 
   await browser.close();
 })();
-
-

@@ -1,22 +1,25 @@
-title,price
-
-★ Falchion Knife | Bright Water (Well-Worn),€ 100.69
-★ Specialist Gloves | Marble Fade (Field-Tested),€ 259.64
-M4A4 | Temukau (Minimal Wear),€ 66.27
-★ Stiletto Knife | Damascus Steel (Field-Tested),€ 222.18
-★ Flip Knife | Ultraviolet (Field-Tested),€ 160.17
-AK-47 | Ice Coaled (Factory New),€ 17.05
-AK-47 | Leet Museo (Field-Tested),€ 13.11
-AK-47 | Asiimov (Minimal Wear),€ 36.69
-USP-S | Printstream (Field-Tested),€ 31.97
-AK-47 | The Empress (Battle-Scarred),€ 18.41
-AWP | Man-o'-war (Minimal Wear),€ 25.83
-AWP | BOOM (Minimal Wear),€ 68.4
-USP-S | Monster Mashup (Minimal Wear),€ 19.88
-StatTrak™ Desert Eagle | Mecha Industries (Minimal Wear),€ 10.58
-AWP | Elite Build (Minimal Wear),€ 13.51
-StatTrak™ UMP-45 | Wild Child (Minimal Wear),€ 11.59
-M4A4 | Cyber Security (Field-Tested),€ 13.18
-P250 | Apep's Curse (Minimal Wear),€ 103.07
-★ Skeleton Knife | Slaughter (Minimal Wear),€ 667.11
-★ Talon Knife | Case Hardened (Battle-Scarred),€ 355.03
+<<<<<<< HEAD
+id,title,price
+35184,M4A1-S | Chantico's Fire (Battle-Scarred),€ 11.48
+34126,AWP | Redline (Minimal Wear),€ 47.15
+776532,Negev | Mjölnir (Factory New),€ 1910.33
+769497,★ Stiletto Knife | Marble Fade (Factory New),€ 452.1
+871546,M4A4 | Spider Lily (Factory New),€ 12.21
+43108,★ M9 Bayonet | Lore (Minimal Wear),€ 1782.58
+38889,StatTrak™ M4A4 | Royal Paladin (Minimal Wear),€ 59.42
+921527,M4A4 | Temukau (Minimal Wear),€ 65.56
+835782,★ Driver Gloves | Black Tie (Minimal Wear),€ 568.1
+759516,★ Stiletto Knife | Urban Masked (Field-Tested),€ 147.26
+872000,★ Butterfly Knife | Bright Water (Field-Tested),€ 658.78
+33960,AK-47 | Redline (Field-Tested),€ 12.75
+33910,AK-47 | Fuel Injector (Factory New),€ 370.47
+760347,★ Talon Knife | Forest DDPAT (Battle-Scarred),€ 205.38
+42542,★ Butterfly Knife | Case Hardened (Factory New),€ 1205.83
+835804,Glock-18 | Neo-Noir (Minimal Wear),€ 17.24
+835382,Sir Bloody Loudmouth Darryl | The Professionals,€ 23.51
+871710,D Squadron Officer | NZSAS,€ 15.24
+871340,AK-47 | Leet Museo (Factory New),€ 42.11
+773832,★ Classic Knife | Boreal Forest (Battle-Scarred),€ 96.74
+=======
+weapon,skin,wear,stattrack,price
+>>>>>>> f896ade684252efcebc4e9b595a23efa7242d227
