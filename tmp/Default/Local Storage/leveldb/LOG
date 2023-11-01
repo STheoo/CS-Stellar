@@ -1,6 +1,5 @@
-2023/11/01-19:15:45.763 1ce0 Reusing MANIFEST C:\Users\savva\Desktop\Stellar\tmp\Default\Local Storage\leveldb/MANIFEST-000001
-2023/11/01-19:15:45.764 1ce0 Recovering log #54
-2023/11/01-19:15:45.769 1ce0 Reusing old log C:\Users\savva\Desktop\Stellar\tmp\Default\Local Storage\leveldb/000054.log 
-2023/11/01-19:22:46.419 3a74 Level-0 table #58: started
-2023/11/01-19:22:46.434 3a74 Level-0 table #58: 15177 bytes OK
-2023/11/01-19:22:46.436 3a74 Delete type=0 #54
+2023/11/01-19:53:31.845 2990 Reusing MANIFEST C:\Users\savva\Desktop\Stellar\tmp\Default\Local Storage\leveldb/MANIFEST-000001
+2023/11/01-19:53:31.846 2990 Recovering log #57
+2023/11/01-19:53:31.847 2990 Level-0 table #60: started
+2023/11/01-19:53:31.854 2990 Level-0 table #60: 14011 bytes OK
+2023/11/01-19:53:31.860 2990 Delete type=0 #57

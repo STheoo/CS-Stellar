@@ -98,7 +98,7 @@ const puppeteer = require('puppeteer');
 
       if (title !== 'Null') {
         fs.appendFile(
-            'results.csv', `${id},${title.replace(/,/g, '.')},${price}\n`,
+            'skin_evaluations.csv', `${id},${title.replace(/,/g, '.')},${price}\n`,
             function(err) {
               if (err) throw err;
             });

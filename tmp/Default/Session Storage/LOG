@@ -1,6 +1,6 @@
-2023/11/01-19:15:46.426 1ce0 Reusing MANIFEST C:\Users\savva\Desktop\Stellar\tmp\Default\Session Storage/MANIFEST-000001
-2023/11/01-19:15:46.430 1ce0 Recovering log #53
-2023/11/01-19:15:46.435 1ce0 Reusing old log C:\Users\savva\Desktop\Stellar\tmp\Default\Session Storage/000053.log 
-2023/11/01-19:22:08.676 1ce0 Level-0 table #58: started
-2023/11/01-19:22:08.683 1ce0 Level-0 table #58: 14240 bytes OK
-2023/11/01-19:22:08.685 1ce0 Delete type=0 #53
+2023/11/01-19:53:32.651 2990 Reusing MANIFEST C:\Users\savva\Desktop\Stellar\tmp\Default\Session Storage/MANIFEST-000001
+2023/11/01-19:53:32.654 2990 Recovering log #57
+2023/11/01-19:53:32.658 2990 Reusing old log C:\Users\savva\Desktop\Stellar\tmp\Default\Session Storage/000057.log 
+2023/11/01-19:54:43.820 2990 Level-0 table #61: started
+2023/11/01-19:54:43.856 2990 Level-0 table #61: 13260 bytes OK
+2023/11/01-19:54:43.859 2990 Delete type=0 #57
