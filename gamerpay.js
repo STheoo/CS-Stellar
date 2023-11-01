@@ -1,5 +1,7 @@
 const fs = require('fs').promises;
 const {Cluster} = require('puppeteer-cluster');
+const moment = require('moment');
+const {time} = require('console');
 
 const urls = [
   'https://gamerpay.gg/?subtype=CSGO_Type_Knife.Bayonet&sortBy=deals&ascending=true&page=1&priceMin=500',
@@ -64,9 +66,8 @@ const urls = [
   'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Type_Shotgun.XM1014&page=1'
 ];
 
-(async () => {
-  const data = await fs.readFile('skin_evaluations.csv', 'utf-8');
 
+(async () => {
   const lookup =
       (arr, title) => {
         let twoDimArr = arr.map(el => el.split(','));
@@ -75,15 +76,47 @@ const urls = [
         return result ? result[2] : null;
       }
 
-  let dataArr = data.split('\n');
+  const offerExists =
+      (twoDimArr, title, price) => {
+        let result = twoDimArr.find(el => (el[1] == title && el[2] == price));
+        return (result !== undefined);
+      }
+
+  function convertToCSV(data) {
+    return data.map(row => row.join(',')).join('\n');
+  }
+
+  function parseCustomDate(dateString) {
+    const [date, time] = dateString.split('T');
+    const [month, day, year] = date.split('-');
+    const [hours, minutes, seconds] = time.split(':');
+    return new Date(year, month - 1, day, hours, minutes, seconds);
+  }
+
+
+  const skin_values = await fs.readFile('skin_evaluations.csv', 'utf-8');
+  let dataArr = skin_values.split('\n');
   dataArr.shift();
+
+  let skin_offers = await fs.readFile('offers.csv', 'utf-8');
+  skin_offers = skin_offers.split('\n');
+  skin_offers.shift();
+  skin_offers = skin_offers.map(el => el.split(','));
+
+
+  fs.writeFile(
+      'offers.csv', 'market,title,price,buffprice,timestamp\n', (err) => {
+        if (err) throw err;
+        console.log('The file has been saved!');
+      });
+
 
   const cluster = await Cluster.launch({
     concurrency: Cluster.CONCURRENCY_PAGE,
-    maxConcurrency: 1,
+    maxConcurrency: 4,
     monitor: true,
     puppeteerOptions: {
-      headless: false,
+      headless: true,
       defaultViewport: false,
       userDataDir: './tmp',
     },
@@ -118,6 +151,7 @@ const urls = [
         let skin = 'Null';
         let wear = 'Null';
         let price = 'Null';
+        let timestamp = 'Null';
 
         const match = url.match(/\.[^.]+\.([^&]+)/);
 
@@ -166,6 +200,8 @@ const urls = [
         } catch (error) {
         }
 
+        const now = new Date();
+        timestamp = moment(now).format('MM-DD-YYYY[T]HH:mm:ss');
 
 
         if (isStatTrack) {
@@ -192,15 +228,26 @@ const urls = [
           console.log(
               'Offer spotted for ' + title + ': ' + price +
               ' Buff price: ' + buffPrice);
-          if (type !== 'Null') {
-            fs.appendFile(
-                'offers.csv',
-                `${title},${price},${buffPrice}\n`,
-                function(err) {
-                  if (err) throw err;
-                });
+          if (!offerExists(skin_offers, title, price)) {
+            const newOffer = ['Gamerpay', title, price, buffPrice, timestamp];
+            skin_offers.push(newOffer);
+            console.log('Pushed offer');
           }
         }
+
+        // if (buffPrice - 5 > price / 0.983) {
+        //   console.log(
+        //       'Offer spotted for ' + title + ': ' + price +
+        //       ' Buff price: ' + buffPrice);
+        //   if (type !== 'Null') {
+        //     fs.appendFile(
+        //         'offers.csv',
+        //         `${title},${price},${buffPrice},${timestamp}\n`,
+        //         function(err) {
+        //           if (err) throw err;
+        //         });
+        //   }
+        // }
       }
 
       await page.waitForSelector('div.Pager_pager__GmYON', {visible: true});
@@ -224,9 +271,27 @@ const urls = [
     await cluster.queue(url);
   }
 
+
+
   // await cluster.queue(
   //     'https://gamerpay.gg/?subtype=CSGO_Type_Knife.Bayonet&sortBy=deals&ascending=true&page=1&priceMin=500');
 
   await cluster.idle();
   await cluster.close();
+
+  skin_offers = skin_offers.filter(arr => arr.length > 1);
+
+  const sorted_skin_offers = skin_offers.sort(function(a, b) {
+    return parseCustomDate(b[4]) - parseCustomDate(a[4])
+  });
+
+  // console.log(sorted_skin_offers);
+
+
+
+
+  await fs.appendFile(
+      'offers.csv', convertToCSV(sorted_skin_offers), function(err) {
+        if (err) throw err;
+      });
 })();
