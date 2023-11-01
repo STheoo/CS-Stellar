@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const {Cluster} = require('puppeteer-cluster');
 
 const urls = [
@@ -65,6 +65,19 @@ const urls = [
 ];
 
 (async () => {
+  const data = await fs.readFile('results.csv', 'utf-8');
+
+  const lookup =
+      (arr, title) => {
+        let twoDimArr = arr.map(el => el.split(','));
+        let result = twoDimArr.find(el => el[1] == title);
+
+        return result ? result[2] : null;
+      }
+
+  let dataArr = data.split('\n');
+  dataArr.shift();
+
   const cluster = await Cluster.launch({
     concurrency: Cluster.CONCURRENCY_PAGE,
     maxConcurrency: 1,
@@ -83,8 +96,9 @@ const urls = [
   await cluster.task(async ({page, data: url}) => {
     await page.goto(url);
 
+    let k_page = 0;
     let isBtnDisabled = false;
-    while (!isBtnDisabled) {
+    while (!isBtnDisabled && k_page < 3) {
       try {
         await page.waitForSelector(
             'div.ItemFeed_feed__iS5V4 > div.ItemCardNew_wrapper__phLcV',
@@ -98,6 +112,7 @@ const urls = [
           'div.ItemFeed_feed__iS5V4 > div.ItemCardNew_wrapper__phLcV:not(.ItemCardNew_filler____xIr)');
 
       for (const producthandle of productsHandles) {
+        let title = 'Null'
         let isStatTrack = null;
         let type = 'Null';
         let skin = 'Null';
@@ -114,17 +129,17 @@ const urls = [
         }
 
         try {
-          let title = await page.evaluate(
+          let tag = await page.evaluate(
               (el) => el.querySelector('span.ItemCardNewBody_name__SYDXg')
                           .textContent,
               producthandle);
-          isStatTrack = title.match(/ST/g) !== null;
+          isStatTrack = tag.match(/ST/g) !== null;
           if (isStatTrack) {
-            skin = title.slice(0, -4);
+            skin = tag.slice(0, -4);
             skin = skin.match(/[0-9a-zA-Z\s]+/g);
             skin = skin.join('');
           } else {
-            skin = title.slice(0, -2);
+            skin = tag.slice(0, -2);
             skin = skin.match(/[0-9a-zA-Z\s]+/g);
             skin = skin.join('');
           }
@@ -146,18 +161,46 @@ const urls = [
                       .textContent,
               producthandle);
           price = price.replace(/\,/g, '');
+          price = price.replace(/€|\s/g, '');  // Removes euro sign and space
+          price = parseFloat(price);             // Converts to float
         } catch (error) {
         }
 
-        if (type !== 'Null') {
-          fs.appendFile(
-              'test.csv', `${type},${skin},${wear},${isStatTrack},${price}\n`,
-              function(err) {
-                if (err) throw err;
-              });
+
+
+        if (isStatTrack) {
+          title = 'StatTrak™ ' + type + ' | ' + skin + ' (' + wear + ')';
+        } else {
+          title = type + ' | ' + skin + ' (' + wear + ')';
         }
-        // TODO: Match skin to buff csv and compare price and return snipeable
-        // or not.
+
+        let buffPrice = await lookup(dataArr, title);
+
+        // if (buffPrice !== null) {
+        //   console.log(title + ': ' + price + ' Buff Price: ' + buffPrice);
+        // } else {
+        //   console.log('No matching title found');
+        // }
+
+        // if (buffPrice > price) {
+        //   console.log(
+        //       'Offer spotted for ' + title + ': ' + price +
+        //       ' Buff price: ' + buffPrice);
+        // }
+
+        if (buffPrice - 5 > price / 0.983) {
+          console.log(
+              'Offer spotted for ' + title + ': ' + price +
+              ' Buff price: ' + buffPrice);
+          if (type !== 'Null') {
+            fs.appendFile(
+                'test.csv',
+                `${title},${price},${buffPrice}\n`,
+                function(err) {
+                  if (err) throw err;
+                });
+          }
+        }
       }
 
       await page.waitForSelector('div.Pager_pager__GmYON', {visible: true});
@@ -166,6 +209,7 @@ const urls = [
           (await page.$('div.Pager_pager__GmYON > a.Pager_next__HLqQ7')) ==
           null;
 
+      k_page++;
       isBtnDisabled = is_disabled;
       if (!is_disabled) {
         await Promise.all([

@@ -2,6 +2,8 @@ const fs = require('fs').promises;
 const puppeteer = require('puppeteer');
 
 (async () => {
+  const start = performance.now();
+
   // Create a browser instance
   const browser = await puppeteer.launch(
       {headless: false, defaultViewport: false, userDataDir: './tmp'});
@@ -80,12 +82,17 @@ const puppeteer = require('puppeteer');
       try {
         title = await page.evaluate(
             (el) => el.querySelector('h3 > a').textContent, producthandle);
+        title = title.replace(/(★ )/, '');
+        title = title.replace(/( Knife)/i, '');
+        title = title.replace(/( Gloves)/i, '');
       } catch (error) {
       }
 
       try {
         price = await page.evaluate(
             (el) => el.querySelector('p > strong').textContent, producthandle);
+        price = price.replace(/€|\s/g, '');  // Removes euro sign and space
+        price = parseFloat(price);             // Converts to float
       } catch (error) {
       }
 
@@ -112,6 +119,11 @@ const puppeteer = require('puppeteer');
       ]);
     }
   }
+
+  const end = performance.now();
+
+  const duration = end - start;
+  console.log(`Execution time: ${duration} milliseconds`);
 
   await browser.close();
 })();
