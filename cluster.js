@@ -61,17 +61,13 @@ const urls = [
   'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Type_Shotgun.MAG-7&page=1',
   'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Type_Shotgun.Nova&page=1',
   'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Type_Shotgun.Sawed-Off&page=1',
-  'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Type_Shotgun.XM1014&page=1',
-  'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&type=CSGO_Type_MusicKit&page=1',
-  'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Type_WeaponCase&page=1',
-  'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Tool_Sticker&page=1',
-  'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=Type_CustomPlayer&page=1',
+  'https://gamerpay.gg/?sortBy=deals&ascending=true&priceMin=500&subtype=CSGO_Type_Shotgun.XM1014&page=1'
 ];
 
 (async () => {
   const cluster = await Cluster.launch({
     concurrency: Cluster.CONCURRENCY_PAGE,
-    maxConcurrency: 200,
+    maxConcurrency: 1,
     monitor: true,
     puppeteerOptions: {
       headless: false,
@@ -108,14 +104,13 @@ const urls = [
         let wear = 'Null';
         let price = 'Null';
 
-        let match = url.match(/MusicKit|WeaponCase|Sticker|Player/);
+        const match = url.match(/\.[^.]+\.([^&]+)/);
 
         if (match) {
-          type = match[0];
-        } else {
-          match = url.match(/\.[^.]+\.([^&]+)/);
           type = match[1]
           type = type.replace(/\+/g, ' ');
+        } else {
+          console.log('Match not found.')
         }
 
         try {

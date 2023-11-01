@@ -15,7 +15,7 @@ const puppeteer = require('puppeteer');
   await page.setCookie(...cookies);
 
   await page.goto(
-      'https://buff.163.com/market/csgo#tab=selling&page_num=1&min_price=10');
+      'https://buff.163.com/market/csgo#tab=selling&page_num=1&min_price=10&sort_by=price.asc');
 
   const login = await page.$('#navbar-user-name');
   if (login !== null) {
@@ -52,11 +52,12 @@ const puppeteer = require('puppeteer');
 
   let isBtnDisabled = false;
   while (!isBtnDisabled) {
-    try {
-      await page.waitForSelector('.card_csgo > li', {timeout: 5000});
-    } catch (error) {
-      await page.reload();
-      await page.waitForSelector('.card_csgo > li');
+    for (let i = 0; i < 3; i++) {
+      try {
+        await page.waitForSelector('.card_csgo > li', {timeout: 5000});
+      } catch (error) {
+        await page.reload();
+      }
     }
     const productsHandles = await page.$$('.card_csgo > li');
 
