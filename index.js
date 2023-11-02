@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
 
   // Create a browser instance
   const browser = await puppeteer.launch(
-      {headless: false, defaultViewport: false, userDataDir: './tmp'});
+      {headless: true, defaultViewport: false});
 
   // Create a new page
   const page = await browser.newPage();
@@ -98,8 +98,8 @@ const puppeteer = require('puppeteer');
 
       if (title !== 'Null') {
         fs.appendFile(
-            'skin_evaluations.csv', `${id},${title.replace(/,/g, '.')},${price}\n`,
-            function(err) {
+            'skin_evaluations.csv',
+            `${id},${title.replace(/,/g, '.')},${price}\n`, function(err) {
               if (err) throw err;
             });
       }

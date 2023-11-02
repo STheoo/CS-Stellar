@@ -1,2 +1,70 @@
-market,title,price,buffprice
-
+market,title,price,buffprice,timestamp
+Gamerpay,Hand Wraps | Badlands (Factory New),510.85,528.9,11-02-2023T23:02:46
+Gamerpay,StatTrak™ Paracord | Slaughter (Factory New),306.7,342.23,11-02-2023T23:02:37
+Gamerpay,Skeleton | Safari Mesh (Battle-Scarred),186.24,196.69,11-02-2023T23:02:23
+Gamerpay,Talon | Tiger Tooth (Factory New),575.06,590.07,11-02-2023T23:02:22
+Gamerpay,StatTrak™ Shadow Daggers | Case Hardened (Field-Tested),156.37,648.16,11-02-2023T23:02:08
+Gamerpay,Butterfly | Safari Mesh (Field-Tested),445,460.08,11-02-2023T23:01:47
+Gamerpay,StatTrak™ Bowie | Case Hardened (Battle-Scarred),201.89,298.15,11-02-2023T23:01:38
+Gamerpay,MAG-7 | Cinquedea (Battle-Scarred),500,539.88,11-02-2023T17:51:16
+Gamerpay,AWP | Lightning Strike (Factory New),470.69,490.86,11-02-2023T17:50:56
+Gamerpay,SG 553 | Gator Mesh (Well-Worn),9.94,38.75,11-02-2023T17:50:44
+Gamerpay,StatTrak™ P90 | Death by Kitty (Minimal Wear),197.01,209.26,11-02-2023T17:49:31
+Gamerpay,StatTrak™ P2000 | Ocean Foam (Minimal Wear),297.42,309.95,11-02-2023T17:48:49
+Gamerpay,Survival | Fade (Factory New),421.53,436.28,11-02-2023T17:47:46
+Gamerpay,Nomad | Fade (Minimal Wear),885.72,955.88,11-02-2023T17:47:46
+Gamerpay,M9 Bayonet | Lore (Battle-Scarred),455.59,469.99,11-02-2023T17:47:14
+Gamerpay,StatTrak™ Stiletto | Scorched (Well-Worn),133.2,142.09,11-02-2023T17:47:11
+Gamerpay,Stiletto | Night Stripe (Factory New),340.82,359.1,11-02-2023T17:47:09
+Gamerpay,Karambit | Night (Well-Worn),411.74,425.95,11-02-2023T17:46:56
+Gamerpay,Huntsman | Tiger Tooth (Factory New),249.25,261.9,11-02-2023T17:46:52
+Gamerpay,StatTrak™ Bowie | Case Hardened (Battle-Scarred),175.14,297.1,11-02-2023T17:46:28
+Gamerpay,StatTrak™ Falchion | Forest DDPAT (Minimal Wear),94,103.08,11-02-2023T17:46:27
+Gamerpay,SG 553 | Gator Mesh (Well-Worn),31.75,38.75,11-02-2023T13:15:03
+Gamerpay,AWP | Lightning Strike (Factory New),464.54,490.86,11-02-2023T13:14:57
+Gamerpay,StatTrak™ AWP | Lightning Strike (Minimal Wear),822.21,923.58,11-02-2023T13:14:56
+Gamerpay,Negev | Palm (Factory New),81.67,114.71,11-02-2023T13:14:07
+Gamerpay,StatTrak™ P90 | Death by Kitty (Minimal Wear),198.2,209.26,11-02-2023T13:13:37
+Gamerpay,Desert Eagle | Hand Cannon (Battle-Scarred),269.99,1252.97,11-02-2023T13:12:27
+Gamerpay,Sport | Slingshot (Well-Worn),425.41,441.64,11-02-2023T13:12:17
+Gamerpay,StatTrak™ Stiletto | Scorched (Well-Worn),134.42,142.09,11-02-2023T13:11:29
+Gamerpay,M9 Bayonet | Crimson Web (Well-Worn),471.03,497.31,11-02-2023T13:11:28
+Gamerpay,StatTrak™ M9 Bayonet | Blue Steel (Well-Worn),450,471.48,11-02-2023T13:11:23
+Gamerpay,M9 Bayonet | Lore (Field-Tested),797.51,825.4,11-02-2023T13:11:18
+Gamerpay,Karambit | Night (Well-Worn),412.9,425.95,11-02-2023T13:11:16
+Gamerpay,Karambit | Bright Water (Field-Tested),464.11,481.81,11-02-2023T13:11:16
+Gamerpay,Gut | Blue Steel (Factory New),200,243.88,11-02-2023T13:11:03
+Gamerpay,StatTrak™ Nova | Bloomstick (Well-Worn),115.09,125.3,11-02-2023T01:22:00
+Gamerpay,SG 553 | Gator Mesh (Well-Worn),31.7,38.75,11-02-2023T01:21:43
+Gamerpay,SG 553 | Tornado (Well-Worn),10.3,15.63,11-02-2023T01:21:39
+Gamerpay,FAMAS | Spitfire (Factory New),199,219.59,11-02-2023T01:21:20
+Gamerpay,StatTrak™ P90 | Death by Kitty (Minimal Wear),200.29,209.26,11-02-2023T01:21:07
+Gamerpay,StatTrak™ Dual Berettas | Cobra Strike (Battle-Scarred),18051.57,19375.88,11-02-2023T01:20:37
+Gamerpay,Sport | Slingshot (Well-Worn),427.42,441.64,11-02-2023T01:20:13
+Gamerpay,Specialist | Foundation (Well-Worn),175.24,185.36,11-02-2023T01:20:09
+Gamerpay,StatTrak™ Paracord | Slaughter (Factory New),310.68,342.24,11-02-2023T01:19:54
+Gamerpay,Survival | Night Stripe (Factory New),301.54,497.19,11-02-2023T01:19:46
+Gamerpay,StatTrak™ Classic | Blue Steel (Factory New),475,1937.46,11-02-2023T01:19:38
+Gamerpay,Ursus | Crimson Web (Well-Worn),206.18,219.59,11-02-2023T01:19:37
+Gamerpay,StatTrak™ Ursus | Blue Steel (Field-Tested),133,148.48,11-02-2023T01:19:37
+Gamerpay,StatTrak™ Talon | Crimson Web (Minimal Wear),600,671.7,11-02-2023T01:19:33
+Gamerpay,Talon | Tiger Tooth (Factory New),574.79,591.61,11-02-2023T01:19:33
+Gamerpay,M9 Bayonet | Night (Field-Tested),360,371.63,11-02-2023T01:19:28
+Gamerpay,Shadow Daggers | Ultraviolet (Well-Worn),100.93,116.26,11-02-2023T01:19:25
+Gamerpay,StatTrak™ Huntsman | Stained (Well-Worn),150,243.88,11-02-2023T01:19:17
+Gamerpay,StatTrak™ Gut | Night (Field-Tested),109.85,129.04,11-02-2023T01:19:15
+Gamerpay,Karambit | Night (Field-Tested),434.98,450.81,11-02-2023T01:19:14
+Gamerpay,StatTrak™ Karambit | Forest DDPAT (Field-Tested),337.76,352.51,11-02-2023T01:19:10
+Gamerpay,Karambit | Bright Water (Battle-Scarred),424.99,437.77,11-02-2023T01:19:10
+Gamerpay,StatTrak™ Huntsman | Ultraviolet (Battle-Scarred),107.4,114.64,11-02-2023T01:19:09
+Gamerpay,StatTrak™ Huntsman | Stained (Well-Worn),128.24,243.88,11-02-2023T01:19:09
+Gamerpay,StatTrak™ Gut | Night (Minimal Wear),135,170.51,11-02-2023T01:19:07
+Gamerpay,StatTrak™ Gut | Black Laminate (Field-Tested),113.27,120.78,11-02-2023T01:19:07
+Gamerpay,Gut | Marble Fade (Minimal Wear),178,195.68,11-02-2023T01:19:06
+Gamerpay,StatTrak™ Bowie | Crimson Web (Minimal Wear),465.27,516.43,11-02-2023T01:18:19
+Gamerpay,StatTrak™ Butterfly | Safari Mesh (Field-Tested),450.96,470.19,11-02-2023T01:18:14
+Gamerpay,StatTrak™ Bowie | Stained (Well-Worn),114.91,142.09,11-02-2023T01:18:10
+Gamerpay,Bayonet | Blue Steel (Well-Worn),249,258.35,11-02-2023T01:18:10
+Gamerpay,Butterfly | Ultraviolet (Battle-Scarred),482.55,507.5,11-02-2023T01:18:10
+Gamerpay,Butterfly | Ultraviolet (Well-Worn),562.47,578.43,11-02-2023T01:18:09
+Gamerpay,Bayonet | Fade (Minimal Wear),737.35,813.4,11-02-2023T01:18:09

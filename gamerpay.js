@@ -2,6 +2,7 @@ const fs = require('fs').promises;
 const {Cluster} = require('puppeteer-cluster');
 const moment = require('moment');
 const {time} = require('console');
+const util = require('./util.js')
 
 const urls = [
   'https://gamerpay.gg/?subtype=CSGO_Type_Knife.Bayonet&sortBy=deals&ascending=true&page=1&priceMin=500',
@@ -68,40 +69,9 @@ const urls = [
 
 
 (async () => {
-  const lookup =
-      (arr, title) => {
-        let twoDimArr = arr.map(el => el.split(','));
-        let result = twoDimArr.find(el => el[1] == title);
+  const skin_values = util.convertTo2DArr(await fs.readFile('skin_evaluations.csv', 'utf-8'));
 
-        return result ? result[2] : null;
-      }
-
-  const offerExists =
-      (twoDimArr, title, price) => {
-        let result = twoDimArr.find(el => (el[1] == title && el[2] == price));
-        return (result !== undefined);
-      }
-
-  function convertToCSV(data) {
-    return data.map(row => row.join(',')).join('\n');
-  }
-
-  function parseCustomDate(dateString) {
-    const [date, time] = dateString.split('T');
-    const [month, day, year] = date.split('-');
-    const [hours, minutes, seconds] = time.split(':');
-    return new Date(year, month - 1, day, hours, minutes, seconds);
-  }
-
-
-  const skin_values = await fs.readFile('skin_evaluations.csv', 'utf-8');
-  let dataArr = skin_values.split('\n');
-  dataArr.shift();
-
-  let skin_offers = await fs.readFile('offers.csv', 'utf-8');
-  skin_offers = skin_offers.split('\n');
-  skin_offers.shift();
-  skin_offers = skin_offers.map(el => el.split(','));
+  let skin_offers = util.convertTo2DArr(await fs.readFile('offers.csv', 'utf-8'));
 
 
   fs.writeFile(
@@ -210,44 +180,19 @@ const urls = [
           title = type + ' | ' + skin + ' (' + wear + ')';
         }
 
-        let buffPrice = await lookup(dataArr, title);
-
-        // if (buffPrice !== null) {
-        //   console.log(title + ': ' + price + ' Buff Price: ' + buffPrice);
-        // } else {
-        //   console.log('No matching title found');
-        // }
-
-        // if (buffPrice > price) {
-        //   console.log(
-        //       'Offer spotted for ' + title + ': ' + price +
-        //       ' Buff price: ' + buffPrice);
-        // }
+        let buffPrice = await util.lookup(skin_values, title);
 
         if (buffPrice - 5 > price / 0.983) {
           console.log(
               'Offer spotted for ' + title + ': ' + price +
               ' Buff price: ' + buffPrice);
-          if (!offerExists(skin_offers, title, price)) {
+          if (!util.offerExists(skin_offers, title, price)) {
             const newOffer = ['Gamerpay', title, price, buffPrice, timestamp];
             skin_offers.push(newOffer);
             console.log('Pushed offer');
           }
         }
 
-        // if (buffPrice - 5 > price / 0.983) {
-        //   console.log(
-        //       'Offer spotted for ' + title + ': ' + price +
-        //       ' Buff price: ' + buffPrice);
-        //   if (type !== 'Null') {
-        //     fs.appendFile(
-        //         'offers.csv',
-        //         `${title},${price},${buffPrice},${timestamp}\n`,
-        //         function(err) {
-        //           if (err) throw err;
-        //         });
-        //   }
-        // }
       }
 
       await page.waitForSelector('div.Pager_pager__GmYON', {visible: true});
@@ -271,27 +216,16 @@ const urls = [
     await cluster.queue(url);
   }
 
-
-
-  // await cluster.queue(
-  //     'https://gamerpay.gg/?subtype=CSGO_Type_Knife.Bayonet&sortBy=deals&ascending=true&page=1&priceMin=500');
-
   await cluster.idle();
   await cluster.close();
 
-  skin_offers = skin_offers.filter(arr => arr.length > 1);
-
+  // Sort and update Offers
   const sorted_skin_offers = skin_offers.sort(function(a, b) {
-    return parseCustomDate(b[4]) - parseCustomDate(a[4])
+    return util.parseCustomDate(b[4]) - util.parseCustomDate(a[4])
   });
 
-  // console.log(sorted_skin_offers);
-
-
-
-
   await fs.appendFile(
-      'offers.csv', convertToCSV(sorted_skin_offers), function(err) {
+      'offers.csv', util.convertToCSV(sorted_skin_offers), function(err) {
         if (err) throw err;
       });
 })();
