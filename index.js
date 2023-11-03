@@ -82,9 +82,7 @@ const puppeteer = require('puppeteer');
       try {
         title = await page.evaluate(
             (el) => el.querySelector('h3 > a').textContent, producthandle);
-        title = title.replace(/(★ )/, '');
-        title = title.replace(/( Knife)/i, '');
-        title = title.replace(/( Gloves)/i, '');
+        title = title.replace(/(★ )|( Knife)|( Gloves)/, '');
       } catch (error) {
       }
 
