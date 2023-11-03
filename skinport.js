@@ -30,7 +30,7 @@ puppeteer.use(StealthPlugin());
   let listings_taken = 0;
   let listings_pushed = 0;
 
-  while (listings_pushed < 10) {
+  while (listings_pushed < 1) {
     for (let i = 0; i < (skin_listings.length - listings_taken); i++) {
       let title = 'Null'
       let type = 'Null';
@@ -87,9 +87,10 @@ puppeteer.use(StealthPlugin());
       timestamp = moment(now).format('MM-DD-YYYY[T]HH:mm:ss');
 
       // Final Title
-      title = type + ' | ' + skin + ' (' + wear + ')';
+      title = type + ' | ' + skin + (wear !== 'Null' ? ` (${wear})` : ``);
 
-      let buffPrice = await util.lookup(skin_values, title);
+      let buffPrice = await util.lookup(skin_values, title)
+      // buffPrice = buffPrice !== null ? buffPrice : -20;
 
       if (buffPrice - 5 > price) {
         console.log(
@@ -102,7 +103,7 @@ puppeteer.use(StealthPlugin());
           console.log('Pushed offer #' + listings_pushed);
         }
       } else {
-        console.log('poop' + title);
+        console.log('poop' + title + ' Buff price: ' + buffPrice);
       }
 
       console.log(++listings_taken);
@@ -128,8 +129,6 @@ puppeteer.use(StealthPlugin());
   const sorted_skin_offers = skin_offers.sort(function(a, b) {
     return util.parseCustomDate(b[4]) - util.parseCustomDate(a[4])
   });
-
-  console.log(sorted_skin_offers);
 
   fs.writeFile(
       'offers.csv', 'market,title,price,buffprice,timestamp\n', (err) => {

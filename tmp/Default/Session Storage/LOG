@@ -1,0 +1,5 @@
+2023/11/03-14:49:25.191 16bc Creating DB C:\Users\savva\Desktop\Stellar-1\tmp\Default\Session Storage since it was missing.
+2023/11/03-14:49:25.198 16bc Reusing MANIFEST C:\Users\savva\Desktop\Stellar-1\tmp\Default\Session Storage/MANIFEST-000001
+2023/11/03-14:51:41.766 16bc Level-0 table #5: started
+2023/11/03-14:51:41.777 16bc Level-0 table #5: 13182 bytes OK
+2023/11/03-14:51:41.778 16bc Delete type=0 #3

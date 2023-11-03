@@ -1,0 +1,5 @@
+2023/11/03-14:49:21.789 3070 Creating DB C:\Users\savva\Desktop\Stellar-1\tmp\Default\Local Storage\leveldb since it was missing.
+2023/11/03-14:49:21.798 3070 Reusing MANIFEST C:\Users\savva\Desktop\Stellar-1\tmp\Default\Local Storage\leveldb/MANIFEST-000001
+2023/11/03-14:52:25.188 82c Level-0 table #5: started
+2023/11/03-14:52:25.192 82c Level-0 table #5: 17254 bytes OK
+2023/11/03-14:52:25.203 82c Delete type=0 #3
