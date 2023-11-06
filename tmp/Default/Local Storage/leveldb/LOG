@@ -1,5 +1,15 @@
-2023/11/03-14:49:21.789 3070 Creating DB C:\Users\savva\Desktop\Stellar-1\tmp\Default\Local Storage\leveldb since it was missing.
-2023/11/03-14:49:21.798 3070 Reusing MANIFEST C:\Users\savva\Desktop\Stellar-1\tmp\Default\Local Storage\leveldb/MANIFEST-000001
-2023/11/03-14:52:25.188 82c Level-0 table #5: started
-2023/11/03-14:52:25.192 82c Level-0 table #5: 17254 bytes OK
-2023/11/03-14:52:25.203 82c Delete type=0 #3
+2023/11/04-19:43:52.801 c78 Reusing MANIFEST C:\Users\User\Desktop\Stellar\tmp\Default\Local Storage\leveldb/MANIFEST-000001
+2023/11/04-19:43:52.802 c78 Recovering log #3
+2023/11/04-19:43:52.804 c78 Reusing old log C:\Users\User\Desktop\Stellar\tmp\Default\Local Storage\leveldb/000003.log 
+2023/11/04-19:51:22.889 3cec Level-0 table #5: started
+2023/11/04-19:51:22.892 3cec Level-0 table #5: 16609 bytes OK
+2023/11/04-19:51:22.895 3cec Delete type=0 #3
+2023/11/04-19:55:00.501 3cec Level-0 table #7: started
+2023/11/04-19:55:00.504 3cec Level-0 table #7: 9840 bytes OK
+2023/11/04-19:55:00.508 3cec Delete type=0 #4
+2023/11/04-20:03:00.498 3cec Level-0 table #9: started
+2023/11/04-20:03:00.510 3cec Level-0 table #9: 12868 bytes OK
+2023/11/04-20:03:00.516 3cec Delete type=0 #6
+2023/11/04-20:06:25.543 20d8 Level-0 table #11: started
+2023/11/04-20:06:25.548 20d8 Level-0 table #11: 11020 bytes OK
+2023/11/04-20:06:25.551 20d8 Delete type=0 #8

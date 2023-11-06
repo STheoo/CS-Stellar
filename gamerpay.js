@@ -83,7 +83,7 @@ const urls = [
 
   const cluster = await Cluster.launch({
     concurrency: Cluster.CONCURRENCY_PAGE,
-    maxConcurrency: 4,
+    maxConcurrency: 1,
     monitor: true,
     puppeteerOptions: {
       headless: true,
@@ -180,9 +180,9 @@ const urls = [
           title = type + ' | ' + skin + ' (' + wear + ')';
         }
 
-        let buffPrice = await util.lookup(skin_values, title);
+        let buffPrice = await util.lookupPrice(skin_values, title);
 
-        if (buffPrice - 5 > price / 0.983) {
+        if (buffPrice * 0.87 > price / 0.983) {
           console.log(
               'Offer spotted for ' + title + ': ' + price +
               ' Buff price: ' + buffPrice);

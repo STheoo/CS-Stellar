@@ -89,7 +89,7 @@ puppeteer.use(StealthPlugin());
       // Final Title
       title = type + ' | ' + skin + (wear !== 'Null' ? ` (${wear})` : ``);
 
-      let buffPrice = await util.lookup(skin_values, title)
+      let buffPrice = await util.lookupPrice(skin_values, title)
       // buffPrice = buffPrice !== null ? buffPrice : -20;
 
       if (buffPrice - 5 > price) {

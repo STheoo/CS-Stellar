@@ -17,7 +17,7 @@ const puppeteer = require('puppeteer');
   await page.setCookie(...cookies);
 
   await page.goto(
-      'https://buff.163.com/market/csgo#tab=selling&page_num=1&min_price=10&sort_by=price.asc');
+      'https://buff.163.com/market/csgo#tab=selling&page_num=1&min_price=1&sort_by=price.asc');
 
   const login = await page.$('#navbar-user-name');
   if (login !== null) {

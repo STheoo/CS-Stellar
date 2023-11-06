@@ -1,8 +1,15 @@
-const lookup =
+const lookupPrice =
     (arr, title) => {
       let result = arr.find(el => el[1] == title);
 
       return result ? parseFloat(result[2]) : null;
+    }
+
+    const lookupID =
+    (arr, title) => {
+      let result = arr.find(el => el[1] == title);
+
+      return result ? result[0] : null;
     }
 
 const offerExists =
@@ -32,7 +39,8 @@ const offerExists =
                }
 
                module.exports = {
-      lookup,
+      lookupPrice,
+      lookupID,
       offerExists,
       convertToCSV,
       convertTo2DArr,
